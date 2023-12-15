@@ -13,6 +13,7 @@ const Login = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [loginError, setLoginError] = useState(null);
 
   const handleChange = (e) => {
     setCredentials({
@@ -23,6 +24,7 @@ const Login = () => {
       ...errors,
       [e.target.name]: '',
     });
+    setLoginError(null); 
   };
 
   const handleSubmit = async (e) => {
@@ -37,7 +39,12 @@ const Login = () => {
         console.log('Login successful');
         navigate('/Home');
       } catch (error) {
-        console.error('Login error:', error.response?.data?.error || 'Unknown error');
+        if (error.response && error.response.status === 401) {
+          
+          setLoginError('Invalid email or password');
+        } else {
+          console.error('Login error:', error.response?.data?.error || 'Unknown error');
+        }
       }
     }
   };
@@ -76,6 +83,8 @@ const Login = () => {
             margin="normal"
           />
           {errors.password && <p className="error-message">{errors.password}</p>}
+
+          {loginError && <p className="error-message">{loginError}</p>}
 
           <Button type="submit" variant="contained" color="primary">Login</Button>
 
