@@ -35,7 +35,7 @@ const Login = () => {
       try {
         await axios.post('http://localhost:5000/login', credentials);
         console.log('Login successful');
-        navigate('/');
+        navigate('/Home');
       } catch (error) {
         console.error('Login error:', error.response?.data?.error || 'Unknown error');
       }
