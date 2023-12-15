@@ -42,7 +42,7 @@ const Signup = () => {
         const response = await axios.post("http://localhost:5000/signup", details);
         console.log('Signup successful:', response.data);
         // Redirect to login after successful signup using useNavigate
-        navigate('/login');
+        navigate('/');
       } catch (error) {
         console.error('Signup error:', error.response?.data?.error || 'Unknown error');
       }
@@ -114,7 +114,7 @@ const Signup = () => {
 
           <Button type="submit" variant="contained" color="primary">Signup</Button>
 
-          <Link to="/login" style={{ textDecoration: 'none', marginTop: '10px', color: 'blue', textAlign: 'center', display: 'block' }}>
+          <Link to="/" style={{ textDecoration: 'none', marginTop: '10px', color: 'blue', textAlign: 'center', display: 'block' }}>
             Already have an account? Login
           </Link>
         </Box>
